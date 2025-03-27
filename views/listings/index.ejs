@@ -7,10 +7,12 @@
           <img src="<%=listings.image.url %>" class="card-img-top card-img" alt="listing-image" style="height: 20rem;">
           <div class="card-img-overlay"></div>
           <div class="card-body listing-body">
-              <p class="card-text">
-                  <b><%=listings.title %></b><br>
-                  &#8377; <%= listings.price.toLocaleString("en-IN") %>/ night
-              </p>
+            <p class="card-text">
+                <b><%= listings.title %></b><br>
+                &#8377; <%= (listings.price || 0).toLocaleString("en-IN") %>/ night
+            </p>
+            
+            
           </div>
       </div>
   </a>

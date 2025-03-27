@@ -6,8 +6,9 @@ const Listing = require("./models/listing.js");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
+const wrapAsync = require("./utils/wrapAsync.js");
+const ExpressError = require("./utils/ExpressError.js");
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
-
 main()
   .then(() => {
     console.log("connected to WanderlustDB ");
@@ -50,11 +51,14 @@ app.get("/listings/:id", async (req, res) => {
 });
 
 // CREATE ROUTE
-app.post("/listings", async (req, res) => {
-  const newListing = new Listing(req.body.listing);
-  await newListing.save();
-  res.redirect("/listings");
-});
+app.post(
+  "/listings",
+  wrapAsync(async (req, res) => {
+    const newListing = new Listing(req.body.listing);
+    await newListing.save();
+    res.redirect("/listings");
+  })
+);
 
 // EDIT ROUTE
 
@@ -79,6 +83,16 @@ app.delete("/listings/:id", async (req, res) => {
   const deletedListing = await Listing.findByIdAndDelete(id);
   console.log(deletedListing);
   res.redirect("/listings");
+});
+
+// MIDDLEWARE
+app.all("*", (req, res, next) => {
+  next(new (ExpressError(404, "Page Not Found!!")));
+});
+
+app.use((err, req, res, next) => {
+  let { statusCode, message } = err;
+  res.status(statusCode);
 });
 
 app.listen(8000, () => {
