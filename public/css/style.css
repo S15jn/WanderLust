@@ -147,8 +147,10 @@ body{
 }
 
 .listing-title-text {
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: #0e366e;
+    text-decoration:double underline rgb(12, 44, 108) 1px;
+
 }
 
 .listing-price {
@@ -203,8 +205,11 @@ button {
 }
 
 
-
-
+/* Review */
+.reviewCard{
+    border: 1px solid #3498db !important;
+ padding:  1rem !important;
+}
 
 
 

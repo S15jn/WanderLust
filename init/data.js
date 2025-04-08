@@ -347,6 +347,116 @@ const sampleListings = [
     location: "Costa Rica",
     country: "Costa Rica",
   },
+  {
+    title: "Seaside Sanctuary",
+    description: "A peaceful oceanfront escape with breathtaking sunsets.",
+    image: {
+      url: "https://media.istockphoto.com/id/171259869/photo/villa-sri-lanka.jpg?s=612x612&w=0&k=20&c=KxBqowg7IOR5J0G81fkouPh_xAc5S7cN7TAQmsVjAio=",
+      filename: "seaside.jpg",
+    },
+    price: 225,
+    location: "Malibu, CA",
+    country: "USA",
+  },
+  {
+    title: "Cabin in the Pines",
+    description: "Cozy rustic cabin surrounded by towering pines and trails.",
+    image: {
+      url: "https://images.unsplash.com/photo-1522798514-97ceb8c4f1c8?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdGVsfGVufDB8fDB8fHww",
+      filename: "pines.jpg",
+    },
+    price: 160,
+    location: "Flagstaff, AZ",
+    country: "USA",
+  },
+  {
+    title: "Urban Loft Downtown",
+    description: "Stylish loft with city views, perfect for remote work.",
+    image: {
+      url: "https://media.istockphoto.com/id/1216946182/photo/tropical-beach-pool-with-palm-trees.jpg?s=612x612&w=0&k=20&c=WsmPi4lhhU09JYC7sIU0-muNoetB8GqTLuloxBEyk6g=",
+      filename: "loft.jpg",
+    },
+    price: 145,
+    location: "Denver, CO",
+    country: "USA",
+  },
+  {
+    title: "Desert Dreamscape",
+    description: "A unique desert stay with modern comfort and nature.",
+    image: {
+      url: "https://media.istockphoto.com/id/1171744291/photo/luxury-house-with-pool-and-terrace-for-relaxing.jpg?s=612x612&w=0&k=20&c=JjyYUhKoFafg1jq78uBxJnUQwOkMZXuuzEJ1p0q4opI=",
+      filename: "desert.jpg",
+    },
+    price: 190,
+    location: "Sedona, AZ",
+    country: "USA",
+  },
+  {
+    title: "Skyline View Apartment",
+    description: "Modern high-rise apartment with panoramic city views.",
+    image: {
+      url: "https://media.istockphoto.com/id/1084264178/photo/3d-render-bungalow-near-endless-pool-over-sea-on-tropical-island-summer-vacation-concept.jpg?s=612x612&w=0&k=20&c=gMic-MydE57GIS0MelfmiVQDHFY-koKEpZBqHmKdh5I=",
+      filename: "skyline.jpg",
+    },
+    price: 210,
+    location: "Chicago, IL",
+    country: "USA",
+  },
+  {
+    title: "Cozy River Cottage",
+    description: "Charming riverside cottage for a tranquil getaway.",
+    image: {
+      url: "https://media.istockphoto.com/id/950698398/photo/attractive-woman-walks-on-a-wooden-jetty-in-the-maldives.jpg?s=612x612&w=0&k=20&c=4cp7pzIMMRGFhdRzTK-VS9Vje1qNbnUyz-PHMFMbZbU=",
+      filename: "cottage.jpg",
+    },
+    price: 175,
+    location: "Asheville, NC",
+    country: "USA",
+  },
+  {
+    title: "Historic Brownstone",
+    description: "Elegant brownstone with vintage charm in a quiet area.",
+    image: {
+      url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aG90ZWx8ZW58MHx8MHx8fDA%3D",
+      filename: "brownstone.jpg",
+    },
+    price: 240,
+    location: "Boston, MA",
+    country: "USA",
+  },
+  {
+    title: "Mountain Escape",
+    description: "Perfect retreat for hikers and nature lovers.",
+    image: {
+      url: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGhvdGVsfGVufDB8fDB8fHww",
+      filename: "mountain.jpg",
+    },
+    price: 180,
+    location: "Bozeman, MT",
+    country: "USA",
+  },
+  {
+    title: "The Redwood Retreat",
+    description: "Stay among towering redwoods in a luxury eco-lodge.",
+    image: {
+      url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8aG90ZWx8ZW58MHx8MHx8fDA%3D",
+      filename: "redwood.jpg",
+    },
+    price: 260,
+    location: "Eureka, CA",
+    country: "USA",
+  },
+  {
+    title: "Modern Studio Flat",
+    description: "Compact and stylish flat in a buzzing arts district.",
+    image: {
+      url: "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      filename: "studio.jpg",
+    },
+    price: 130,
+    location: "Austin, TX",
+    country: "USA",
+  },
 ];
 
 module.exports = { data: sampleListings };
