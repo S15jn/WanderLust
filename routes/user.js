@@ -3,45 +3,29 @@ const router = express.Router();
 const User = require("../models/user");
 const wrapAsync = require("../utils/wrapAsync");
 const passport = require("passport");
+const { saveRedirectUrl } = require("../middleware");
+const userController = require("../controllers/user");
 
 // Sign Up
-router.get("/signup", (req, res) => {
-  res.render("users/signup");
-});
-
-router.post(
-  "/signup",
-  wrapAsync(async (req, res) => {
-    try {
-      let { username, email, password } = req.body;
-      const newUser = new User({ email, username });
-      const registerUser = await User.register(newUser, password);
-      console.log(registerUser);
-      req.flash("success", "welcome to aaganBreeze");
-      res.redirect("/listings");
-    } catch (e) {
-      req.flash("error", e.message);
-      res.redirect("/signup");
-    }
-  })
-);
+router
+  .route("/signup")
+  .get(userController.renderSignupForm)
+  .post(wrapAsync(userController.signup));
 
 // Log In
-router.get("/login", (req, res) => {
-  res.render("users/login");
-});
+router
+  .route("/login")
+  .get(userController.renderLoginForm)
+  .post(
+    saveRedirectUrl,
+    passport.authenticate("local", {
+      failureRedirect: "/login",
+      failureFlash: true,
+    }),
+    userController.login
+  );
 
-router.post(
-  "/login",
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-    failureFlash: true,
-  }),
-  async (req, res) => {
-    req.flash("success", "Welcome back to aaganBreeze");
-
-    res.redirect("/listings");
-  }
-);
+// Log Out
+router.get("/logout", userController.logout);
 
 module.exports = router;

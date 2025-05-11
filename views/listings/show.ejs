@@ -5,6 +5,7 @@
     <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing-image">
     <div class="card-body show-body">
         <p class="card-text listing-price">&#8377;<%= listing.price.toLocaleString("en-IN") %> /Night</p>
+        <p class="card-text listing-owner">Owner: &nbsp;<b><i><%= listing.owner.username %></i></b></p> 
         <p class="card-text listing-description"><%= listing.description %></p>
 
         <!-- Flexbox row for location and icon -->
@@ -15,31 +16,49 @@
     </div>
 </div>
 
-<div class="d-flex justify-content-between button-row mt-4">
+<% if(currUser && listing.owner._id.equals(currUser._id)) {%>
+  <div class="d-flex justify-content-between button-row mt-4">
     <!-- Edit Button -->
     <div class="button-col flex-fill ">
-        <a href="/listings/<%= listing._id %>/edit" class="btn btn-primary new-btn w-100">Edit this listing</a>
+        <a href="/listings/<%= listing._id %>/edit" class="btn btn-primary new-btn w-100">Edit </a>
     </div>
 
     <!-- Delete Button -->
     <div class="button-col flex-fill">
         <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
-            <button type="submit" class="btn btn-danger del-btn w-100">Delete this Listing</button>
+            <button type="submit" class="btn btn-danger del-btn w-100">Delete </button>
         </form>
     </div>
 </div>
+<br>
     <br>
-    <br>
-    <hr>
-    <hr>
-    <div class="review col-8 offset-3 mb-4">
+
+    <%} %>
+    
+   
+    <% if(currUser) {%>
+      <hr>
+      <hr>
+    <div class="review col-8 offset-3 ">
         <h4>Leave a Review</h4>
         <form action="/listings/<%=listing._id %>/reviews" method="post" novalidate class="needs-validation">
-            <div class="mb-3 mt-3">
-                <label for="rating" class="form-label">Rating: <span id="ratingValue">3</span></label>
-                <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range" value="3">
-            </div>
-            <div class="mb-3 mt-3">
+          <p>Rating</p>
+            <fieldset class="starability-growRotate">
+             
+              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+              <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+              <label for="first-rate1" title="Terrible">1 star</label>
+              <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+              <label for="first-rate2" title="Not good">2 stars</label>
+              <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+              <label for="first-rate3" title="Average">3 stars</label>
+              <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+              <label for="first-rate4" title="Very good">4 stars</label>
+              <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+              <label for="first-rate5" title="Amazing" name="review[rating]">5 stars</label>
+            </fieldset>
+            
+            <div class="mb-3 ">
                 <label for="comment" class="form-label">Comment</label>
                 <textarea name="review[comment]" id="reviewcomment" cols="30" rows="4" class="form-control" required></textarea>
                 <div class="invalid-feedback">
@@ -49,7 +68,7 @@
           
             <button class="mt-3 btn btn-primary new-btn w-100">Submit</button>
         </form>
-
+<%} %>
         <hr>
       <p> <b> <i> All Reviews</i></b></p>
       <div class="row">
@@ -57,16 +76,12 @@
           <div class="col-md-6 mb-3">
             <div class="card reviewCard h-100">
               <div class="card-body">
-                <h5 class="card-title">John</h5>
-                <p class="card-text"><%= review.comment %></p>
-                <p class="card-text">
-                  <% for (let i = 0; i < review.rating; i++) { %>
-                    <i class="fa-solid fa-star"></i>
-                  <% } %>
-                  <% for (let i = review.rating; i < 5; i++) { %>
-                    <i class="fa-regular fa-star"></i>
-                  <% } %>
+                <h5 class="card-title">@ <b><i><%=review.author.username %></i></b></h5>
+                <p class="card-text starability-result" data-rating="<%=review.rating %>">
+           
                 </p>
+                <p class="card-text"><%= review.comment %></p>
+               
               </div>
               <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
 
@@ -81,14 +96,7 @@
       </div>
       
     
-    <script>
-        const ratingInput = document.getElementById("rating");
-        const ratingValue = document.getElementById("ratingValue");
-    
-        ratingInput.addEventListener("input", function() {
-            ratingValue.textContent = this.value;
-        });
-    </script>
+   
     
  <br>
  <br>

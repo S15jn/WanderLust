@@ -4,7 +4,7 @@
     <div class="col-8 offset-2">
         <br><br>
         <h1>Edit Yours Listing</h1>
-        <form method="POST" action="/listings/<%=listing._id %>?_method=PUT" class="needs-validation" novalidate>
+        <form method="POST" action="/listings/<%=listing._id %>?_method=PUT" class="needs-validation" enctype="multipart/form-data" novalidate>
 
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
@@ -19,9 +19,17 @@
             </div>
 
             <div class="mb-3">
-                <label for="image" class="form-label">Image_URL</label>
-                <input type="text" name="listing[image]" value="<%=listing.image.url %>" class="form-control" required>
-                <img src="<%=listing.image.url %>" alt="" class="Edit-img">
+                <label for="image" class="form-label">Upload Image</label>
+              
+                <input type="file" name="listing[image]" value="<%=listing.image.url %>" class="form-control" >
+
+                
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Orginal Image</label>
+                <br>
+                <img src="<%=orginalImageUrl%>" alt="" class="Edit-img">
             </div>
 
             <div class="row">
@@ -42,6 +50,11 @@
                 <label for="location" class="form-label">Location</label>
                 <input type="text" name="listing[location]" value="<%=listing.location %>" class="form-control" required>
                 <div class="invalid-feedback">Please provide a location.</div>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Category</label>
+                <input type="text" name="listing[category]" value="<%=listing.category %>" class="form-control" required>
+                <div class="invalid-feedback">Please provide a  category.</div>
             </div>
 
             <button class="btn btn-dark mb-3 new-btn">Edit</button>

@@ -5,12 +5,16 @@ const reviewsSchema = new Schema({
   comment: String,
   rating: {
     type: Number,
-    min: 1,
+    min: 0,
     max: 5,
   },
   createAt: {
     type: Date,
     default: Date.now(),
+  },
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
 });
 

@@ -1,6 +1,154 @@
 
 <%layout('/layouts/boilerplate')%>
 
+<style>
+#filters{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+ overflow: hidden;
+    padding: 0 40px;
+    justify-content: center;
+}
+.filter{
+  text-align: center;
+  flex: 1 0 100px; 
+  max-width: 120px;
+  margin-top: 1rem;
+  opacity: 0.8;
+  transition: transform 0.3s ease;
+}
+
+.filter:hover {
+    transform: scale(1.1);
+ 
+    cursor: pointer;
+  }
+.filter i {
+    font-size: 1.5rem;
+    color: #4b5563;
+  }
+
+ .filter i:hover{
+  color: #f28c82;
+ } 
+
+
+.filter p{
+  font-size: 0.8rem;
+  color: #65615e ;
+}
+
+.tax-toogle {
+ font-size: .9rem;
+text-align: center;
+padding: 1rem;
+  border-radius: 1.5rem;
+  border: 1px solid #f97352;
+  color: #65615e !important;
+  height: 2.3rem;
+  margin-left: 3rem;
+  display: flex;
+  align-items: center;
+
+}
+.form-check-input:checked {
+    background-color: #f97352 !important; 
+    border-color: #f97352 !important; 
+}
+
+.form-check-input:checked:focus {
+    box-shadow: 0 0 0 0.25rem rgba(249, 115, 82, 0.25) !important;
+}
+
+.form-check-input:checked::before {
+    color: white !important;
+}
+
+
+@media (max-width: 768px) {
+  .filter {
+    flex: 1 0 30%; /* 2–3 filters per row */
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter {
+    flex: 1 0 45%; /* 2 per row */
+  }
+
+  #filters {
+    gap: 12px;
+  }
+}
+
+.tax-info{
+  display: none;
+}
+.index-srch{
+
+}
+</style>
+
+
+<div class="filters" id="filters">
+  
+  <div class="filter" data-filter="Trending">
+   <div> <i class="fa-solid fa-fire"></i></div>
+<p> Trending</p>
+  </div>
+  <div class="filter" data-filter="Rooms">
+   <div> <i class="fa-solid fa-bed"></i></div>
+<p> Rooms</p>
+  </div>
+
+  <div class="filter" data-filter="Iconic Cities">
+   <div> <i class="fa-solid fa-mountain-city"></i></div>
+<p> Iconic Cities</p>
+  </div>
+  <div class="filter"  data-filter="Mountains">
+   <div> <i class="fa-solid fa-mountain-sun"></i></div>
+<p> Mountains</p>
+  </div>
+  <div class="filter" data-filter="Castles">
+   <div> <i class="fa-brands fa-fort-awesome"></i></div>
+<p>Castles </p>
+  </div>
+  <div class="filter" data-filter="Amazing Pools">
+   <div> <i class="fa-solid fa-person-swimming"></i></div>
+<p>Amazing Pools </p>
+  </div>
+  <div class="filter" data-filter="Camping">
+   <div> <i class="fa-solid fa-campground"></i></div>
+<p>Camping </p>
+  </div>
+  <div class="filter" data-filter="Farms">
+   <div> <i class="fa-solid fa-cow"></i></div>
+<p>farms </p>
+  </div>
+  <div class="filter" data-filter="Arctic">
+   <div> <i class="fa-solid fa-snowflake"></i></div>
+<p>Arctic </p>
+  </div>
+  <div class="d-flex">
+     <div class="index-srch ms-auto">
+          <form class="d-flex " role="search" style="gap: 0.1rem;">
+            <input class="form-control search-input1" type="search" placeholder="Search Destinations,rooms or cities" style="width:350px;">
+            <button class="btn btn-search1" type="submit" style="padding: 0.2rem 0.5rem; width: 100px;">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+        </div>
+  <div class="tax-toogle" >
+    <div class="form-check form-switch form-check-reverse">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+    </div>
+  </div>
+  </div>
+</div>
+
 <div class="row row-cols-lg-3  row-cols-md-2 row-cols-sm-1  mb-3 mt-5">
 <%for(let listings of allListings){%>
   <a href="/listings/<%=listings._id %>" class="listing-link">
@@ -11,6 +159,7 @@
             <p class="card-text">
                 <b><%= listings.title %></b><br>
                 &#8377; <%= (listings.price || 0).toLocaleString("en-IN") %>/ night
+                <i class="tax-info">&nbsp;&nbsp;+18% GST</i>
             </p>
             
             
@@ -19,3 +168,49 @@
   </a>
   <%}%>  
 </div>  
+ 
+
+
+
+<script>
+  let taxSwitch=document.getElementById("flexSwitchCheckDefault")
+  taxSwitch.addEventListener("click",()=>{
+   let taxInfo=document.getElementsByClassName("tax-info");
+  for(info of taxInfo){
+    if(info.style.display !="inline"){
+       info.style.display="inline"
+    }
+    else{
+       info.style.display="none"
+    }
+  } 
+  })
+
+
+
+   const filters = document.querySelectorAll(".filter");
+  const listings = document.querySelectorAll(".listing-card");
+
+  filters.forEach(filter => {
+    filter.addEventListener("click", () => {
+      const category = filter.getAttribute("data-filter");
+
+      if (category === "Trending") {
+        listings.forEach(listing => {
+          listing.style.display = "block";
+        });
+        return;
+      }
+      listings.forEach(listing => {
+        listing.style.display = "none";
+      });
+
+      
+      listings.forEach(listing => {
+        if (listing.querySelector(".card-text b").innerText.includes(category)) {
+          listing.style.display = "block";
+        }
+      });
+    });
+  });
+</script>
