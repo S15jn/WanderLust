@@ -1,29 +1,49 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../models/listing.js");
-const { object } = require("joi");
 
-// Basic connection code
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
-main()
-  .then(() => {
-    console.log("connected to WanderlustDB ");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-async function main() {
-  await mongoose.connect(MONGO_URL);
+const dbUrl = process.env.ATLASDB_URL;
+if (!dbUrl) {
+  console.error("ATLASDB_URL is undefined. Please check your .env file.");
+  process.exit(1);
 }
+console.log(" DB URL from .env:", dbUrl);
 
-// existing data clean&& inserting new data
-const initDB = async () => {
-  await Listing.deleteMany({});
-  initData.data=initData.data.map((obj) => ({ ...obj, owner: "67f4eb9055c993932d243f07" }));
-  await Listing.insertMany(initData.data);
-  console.log("data was initialized");
+const connectDB = async () => {
+  try {
+    await mongoose.connect(dbUrl, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log(" Connected to WanderlustDB");
+  } catch (err) {
+    console.error("Database connection error:", err.message);
+    process.exit(1);
+  }
 };
 
-// calling the function
+const initDB = async () => {
+  try {
+    console.log(" Clearing existing data...");
+    await Listing.deleteMany({});
+    console.log(" Inserting new data...");
 
-initDB();
+    const modifiedData = initData.data.map((obj) => ({
+      ...obj,
+      owner: "67f4eb9055c993932d243f07",
+    }));
+
+    await Listing.insertMany(modifiedData);
+    console.log("Data was successfully initialized!");
+  } catch (err) {
+    console.error("Error during DB initialization:", err.message);
+  }
+};
+const run = async () => {
+  await connectDB();
+  await initDB();
+  mongoose.connection.close();
+};
+
+run();

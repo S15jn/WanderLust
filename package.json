@@ -1,36 +1,86 @@
 {
 
   "engines": {
+
     "node": "22.13.0"
+
   },
+
   "name": "majorproject",
+
   "version": "1.0.0",
+
   "main": "app.js",
+
   "scripts": {
+
     "test": "echo \"Error: no test specified\" && exit 1"
+
   },
+
   "keywords": [],
+
   "author": "",
+
   "license": "ISC",
-  "description": "",
+
+  "description": "**Your Gateway to Smart Hostel Bookings**  \r AaganBreeze is not just a booking site — it's your ultimate companion for discovering, booking, and managing hostel stays with ease. Designed with simplicity, speed, and safety in mind, AaganBreeze redefines the way you travel.",
+
   "dependencies": {
+
     "@types/passport-local": "^1.0.38",
+
     "cloudinary": "^1.41.3",
+
     "connect-flash": "^0.1.1",
+
     "connect-mongo": "^5.1.0",
+
     "cookie-parser": "^1.4.7",
+
     "dotenv": "^16.5.0",
+
     "ejs": "^3.1.10",
+
     "ejs-mate": "^4.0.0",
+
     "express": "^4.21.2",
+
     "express-session": "^1.18.1",
+
     "joi": "^17.13.3",
+
     "method-override": "^3.0.0",
+
     "mongodb": "^6.16.0",
+
     "mongoose": "^8.9.5",
+
     "multer": "^1.4.5-lts.2",
+
     "multer-storage-cloudinary": "^4.0.0",
+
     "passport": "^0.7.0",
+
     "passport-local-mongoose": "^8.0.0"
-  }
+
+  },
+
+  "repository": {
+
+    "type": "git",
+
+    "url": "git+https://github.com/S15jn/WanderLust.git"
+
+  },
+
+  "bugs": {
+
+    "url": "https://github.com/S15jn/WanderLust/issues"
+
+  },
+
+  "homepage": "https://github.com/S15jn/WanderLust#readme"
+
 }
+
