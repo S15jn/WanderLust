@@ -5,12 +5,7 @@
     <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing-image">
     <div class="card-body show-body">
         <p class="card-text listing-price">&#8377;<%= listing.price.toLocaleString("en-IN") %> /Night</p>
-        <!-- <p class="card-text listing-owner">Owner: &nbsp;<b><i><%= listing.owner.username %></i></b></p>  -->
-       <!--  <% if (listing.owner) { %>
-  <p class="card-text listing-owner">Owner: &nbsp;<b><i><%= listing.owner.username %></i></b></p> 
-<% } else { %>
-  <p class="card-text listing-owner">Owner: &nbsp;<b><i>Unknown</i></b></p> 
-<% } %> -->
+      
        <p class="card-text listing-owner">Owner: &nbsp;<b><i><%= listing.owner ? listing.owner : "N/A" %></i></b></p>
 
 
