@@ -1,13 +1,12 @@
-# 🌬️ AaganBreeze
 
-**Your Gateway to Smart Hostel Bookings**  
+# AaganBreeze
+
+Your Gateway to Smart Hotel Bookings
 AaganBreeze is not just a booking site — it's your ultimate companion for discovering, booking, and managing hostel stays with ease. Designed with simplicity, speed, and safety in mind, AaganBreeze redefines the way you travel.
 
----
+# ✨ Why AaganBreeze?
+Unlike generic hotel or hostel booking platforms, AaganBreeze is crafted specifically for budget travelers, students, backpackers, and digital nomads. Here's what sets it apart:
 
-## ✨ Why AaganBreeze?
-
-Unlike generic hotel or hostel booking platforms, **AaganBreeze** is crafted specifically for **budget travelers, students, backpackers, and digital nomads**. Here's what sets it apart:
 
 ### 🔹 Tailored for the Explorer in You
 
@@ -26,6 +25,7 @@ Unlike generic hotel or hostel booking platforms, **AaganBreeze** is crafted spe
 ---
 
 ## 🌍 Features at a Glance
+---
 
 | Feature                           | Description                                                           |
 | --------------------------------- | --------------------------------------------------------------------- |
@@ -36,35 +36,75 @@ Unlike generic hotel or hostel booking platforms, **AaganBreeze** is crafted spe
 | ✍️ **Validation & Clean Forms**   | Input validation ensures no more messy or broken submissions.         |
 | 🧠 **Intelligent Error Handling** | Helpful prompts guide you instead of generic error messages.          |
 | 🧼 **Modern Templating UI**       | Clean, consistent interface with dynamic content rendering.           |
+| 🗺️ **Interactive Maps (Mapbox)** | Integrated maps for hostel locations, powered by Mapbox.              |
+| 🧩 **MVC Architecture**           | Organized, scalable backend with Model-View-Controller pattern.       |
 | 🚀 **Seamless User Experience**   | Optimized flows for mobile and desktop users.                         |
 
 ---
 
 ## 🔧 How It's Built
 
-AaganBreeze is powered by modern backend architecture, ensuring it’s scalable, maintainable, and fast. It leverages:
+AaganBreeze is powered by a modern backend and follows a modular architecture for flexibility and performance.
 
-- A non-relational database optimized for travel listings and user data
-- Server-side rendering for faster page loads and dynamic content
-- Modular code structure for easy feature upgrades
-- Middleware-based request handling and clean routing
+### 🛠️ Tech Stack
+
+- **Frontend**: HTML5, CSS3, JavaScript, EJS (Embedded JavaScript Templates)
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (NoSQL, flexible schema)
+- **Templating**: EJS with layouts and partials
+- **Authentication**: Passport.js, Sessions, Flash messages
+- **Maps**: Mapbox integration for hostel location visualization
+- **Architecture**: MVC (Model-View-Controller)
+- **Error Handling**: Custom middleware and async error wrappers
+- **Flash Messaging**: Connect-flash for instant UI feedback
+- **Validation**: Server-side schema validation using Joi
+
+---
+## 📍 Available Everywhere
+
+We are proud to serve you in **all directions** —  
+**North, South, East, and West** — with our premium stay options. No matter where you go, AaganBreeze ensures you get the best experience.
 
 ---
 
-## Logo
+## 🌄 Scenic Views Like Never Before
 
-<p align="center">
-  <img src="#" width="200" alt="AaganBreeze Logo" />
-</p>
+Enjoy mesmerizing views that make every stay unforgettable:
+- 🌊 **Sea Views**
+- 🌅 **Sunrises & Sunsets**
+- 🌕 **Moon Views**
+- 🏔️ **Mountain Views**
+- 🌉 **Lake Views**
+- 🏞️ **Nature Retreats**
+- 🌆 **Cityscapes**
 
-<h1 align="center">🌬️ AaganBreeze</h1>
-<p align="center"><em>Your Gateway to Smart Hostel Bookings</em></p>
+---
+
+## 🖼️ Logo
+
+
+![Logo](https://drive.google.com/file/d/1af2jqSyCR27rjIrP_U5ZRwlWF2Lj8B2A/view?usp=sharing)
+
+
+
 
 ## 📸 Screenshots
+![Logo](https://drive.google.com/file/d/1-0jw_6X7rUtSxucfS5tO89HXABdvh4BK/view?usp=drive_link)
+![Logo](https://drive.google.com/file/d/1xGBwVPH-t6FMbu5jmBAa5UJ2tHU9Eoec/view?usp=drive_link)
+![Logo](https://drive.google.com/file/d/1lTH5JJ66vQlWwaG_KC7e_FDW2QQSwH1M/view?usp=drive_link)
 
-> Coming Soon — Get a sneak peek into the AaganBreeze experience.
 
----
+## 🌐 Start Your Journey Today
+
+**Book smart. Stay classy. Live breezy — with AaganBreeze.**
+
+
+
+
+
+## Demo
+
+https://agganbreeze.onrender.com/listings
 
 ## 🚀 Getting Started
 
