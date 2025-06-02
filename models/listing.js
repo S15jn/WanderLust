@@ -25,6 +25,7 @@ const listingSchema = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
     ref: "User",
+      default: "67f4eb9055c993932d243f07",
   },
   category: {
     type: String,
