@@ -16,6 +16,9 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
+const authRoutes = require("./routes/auth");
+const bookingRouter = require("./routes/booking");
+const paymentRoutes = require("./routes/payment");
 
 const dbUrl = process.env.ATLASDB_URL;
 
@@ -51,7 +54,7 @@ const store = MongoStore.create({
   touchAfter: 24 * 3600,
 });
 
-store.on("error", () => {
+store.on("error", (err) => {
   console.log("ERROR in MONGO SESSION STORE", err);
 });
 
@@ -75,7 +78,7 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
+require("./utils/passportConfig");
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
@@ -89,7 +92,9 @@ app.use((req, res, next) => {
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
-
+app.use("/auth", authRoutes);
+app.use("/bookings", bookingRouter);
+app.use("/payment", paymentRoutes);
 // MIDDLEWARE
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page not found :( "));

@@ -1,0 +1,43 @@
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<div class="text-center mt-8">
+  <h2 class="text-2xl font-bold">Total: ₹<%= booking.totalPrice %>
+  </h2>
+  <button id="pay-btn" class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg">
+    Pay Now
+  </button>
+</div>
+
+<script>
+  const payBtn = document.getElementById("pay-btn");
+  payBtn.addEventListener("click", async () => {
+    const response = await fetch("/payment/create-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount: <%= booking.totalPrice %> }),
+    });
+
+    const order = await response.json();
+
+    const options = {
+      key: "<%= process.env.RAZORPAY_KEY_ID %>",
+      amount: order.amount,
+      currency: "INR",
+      name: "WanderLust Booking",
+      description: "Hotel Booking Payment",
+      order_id: order.id,
+      handler: function (response) {
+        alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+        window.location.href = "/bookings/success";
+      },
+      prefill: {
+        name: "<%= currUser.username %>",
+        email: "<%= currUser.email %>",
+      },
+      theme: { color: "#0d9488" },
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.open();
+  });
+</script>

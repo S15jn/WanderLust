@@ -13,8 +13,10 @@
   "main": "app.js",
 
   "scripts": {
-  "test": "echo \"No tests defined\""
-},
+
+    "test": "echo \"No tests defined\""
+
+  },
 
   "keywords": [],
 
@@ -36,7 +38,7 @@
 
     "cookie-parser": "^1.4.7",
 
-    "dotenv": "^16.5.0",
+    "dotenv": "^16.6.1",
 
     "ejs": "^3.1.10",
 
@@ -44,7 +46,7 @@
 
     "express": "^4.21.2",
 
-    "express-session": "^1.18.1",
+    "express-session": "^1.18.2",
 
     "joi": "^17.13.3",
 
@@ -60,7 +62,11 @@
 
     "passport": "^0.7.0",
 
-    "passport-local-mongoose": "^8.0.0"
+    "passport-google-oauth20": "^2.0.0",
+
+    "passport-local-mongoose": "^8.0.0",
+
+    "razorpay": "^2.9.6"
 
   },
 

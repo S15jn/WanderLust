@@ -1,0 +1,25 @@
+<%layout('/layouts/boilerplate')%>
+
+<div class="container mt-5">
+  <h2>Book Your Stay</h2>
+  <form action="/bookings" method="POST">
+    <div class="mb-3">
+      <label>Name on Booking:</label>
+      <input type="text" name="name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>Number of Rooms:</label>
+      <input type="number" name="rooms" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>Number of Guests:</label>
+      <input type="number" name="guests" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>Number of Days:</label>
+      <input type="number" name="days" class="form-control" required>
+    </div>
+    <button class="btn btn-success w-100  mb-10 p-10">Proceed to Payment</button>
+  </form>
+</div>
+
