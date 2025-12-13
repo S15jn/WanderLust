@@ -7,44 +7,41 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:8000/auth/google/callback",
+      callbackURL: process.env.GOOGLE_CALLBACK_URL,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
+        console.log("✅ GOOGLE PROFILE RECEIVED:");
+        console.log(profile);
+
         let existingUser = await User.findOne({ googleId: profile.id });
 
         if (existingUser) {
-          console.log(" Existing Google user found:", existingUser.username);
+          console.log("👤 Existing Google user:", existingUser);
           return done(null, existingUser);
         }
+
+        console.log("🆕 Creating new Google user...");
 
         const newUser = new User({
           googleId: profile.id,
           username: profile.displayName,
-          email: profile.emails && profile.emails[0]?.value,
-          profilePic: profile.photos && profile.photos[0]?.value,
+          email: profile.emails?.[0]?.value || `${profile.id}@google.com`,
+          profilePic: profile.photos?.[0]?.value,
         });
 
         await newUser.save();
-        console.log(" New Google user created:", newUser.username);
+
+        console.log("✅ New Google user saved:", newUser);
+
         return done(null, newUser);
       } catch (err) {
-        console.error("Error in GoogleStrategy:", err);
+        console.error("🔥 GOOGLE STRATEGY ERROR 🔥");
+        console.error(err); // full error
+        console.error(err.message); // error message
+        console.error(err.stack); // stack trace
         return done(err, null);
       }
     }
   )
 );
-
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await User.findById(id);
-    done(null, user);
-  } catch (err) {
-    done(err, null);
-  }
-});
